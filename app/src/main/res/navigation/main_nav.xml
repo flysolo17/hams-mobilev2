@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/menu_dashboard">
+
+    <fragment
+        android:id="@+id/menu_dashboard"
+        android:name="com.bryll.hamsv2.views.main.nav.home.HomeFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/menu_profile"
+        android:name="com.bryll.hamsv2.views.main.nav.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_menu_profile_to_menu_logout"
+            app:destination="@id/menu_logout" />
+        <action
+            android:id="@+id/action_menu_profile_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_menu_profile_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu_enrollment"
+        android:name="com.bryll.hamsv2.views.main.nav.enrollment.EnrollmentFragment"
+        android:label="Enrollment"
+        tools:layout="@layout/fragment_enrollment" >
+        <action
+            android:id="@+id/action_menu_enrollment_to_classesFragment"
+            app:destination="@id/classesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu_grade"
+        android:name="com.bryll.hamsv2.views.main.nav.grades.GradesFragment"
+        android:label="My Grades"
+        tools:layout="@layout/fragment_grades" />
+    <fragment
+        android:id="@+id/menu_record"
+        android:name="com.bryll.hamsv2.views.main.nav.StudentRecordFragment"
+        android:label="fragment_student_record"
+        tools:layout="@layout/fragment_student_record" />
+    <dialog
+        android:id="@+id/menu_logout"
+        android:name="com.bryll.hamsv2.views.auth.LogoutFragment"
+        android:label="fragment_logout"
+        tools:layout="@layout/fragment_logout" />
+
+    <fragment
+        android:id="@+id/classesFragment"
+        android:name="com.bryll.hamsv2.views.main.nav.enrollment.ClassesFragment"
+        android:label="Select class to enroll"
+        tools:layout="@layout/fragment_classes" >
+        <action
+            android:id="@+id/action_classesFragment_to_enrollmentConfirmationFragment"
+            app:destination="@id/enrollmentConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enrollmentConfirmationFragment"
+        android:name="com.bryll.hamsv2.views.main.nav.enrollment.EnrollmentConfirmationFragment"
+        android:label="Confirm Enrollment"
+        tools:layout="@layout/fragment_enrollment_confirmation" >
+        <argument
+            android:name="classes"
+            app:argType="com.bryll.hamsv2.models.Classes" />
+
+    </fragment>
+    <dialog
+        android:id="@+id/changePasswordFragment"
+        android:name="com.bryll.hamsv2.views.main.nav.profile.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.bryll.hamsv2.views.main.nav.profile.AddressFragment"
+        android:label="My Addresses"
+        tools:layout="@layout/fragment_address" />
+
+</navigation>

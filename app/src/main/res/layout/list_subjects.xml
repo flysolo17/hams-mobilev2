@@ -1,0 +1,85 @@
+<com.google.android.material.card.MaterialCardView android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="194dp"
+                android:id="@+id/imageBackground"
+                app:srcCompat="@drawable/class01"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/test"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textSubjectTitle"
+                android:maxLines="2"
+                android:layout_gravity="bottom"
+                android:layout_margin="10dp"
+                android:ems="3"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:textAppearance="?attr/textAppearanceHeadline4"
+                android:text="@string/subjects"
+                />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageProfile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile"
+                app:shapeAppearance="@style/CornerCut" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="5dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textTeachername"
+                    android:maxLines="1"
+                    android:ems="3"
+                    android:ellipsize="end"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:text="@string/juan_dela_cruz"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/teacher"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

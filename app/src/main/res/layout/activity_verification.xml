@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.auth.VerificationActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/verify_email"
+        android:textColor="@color/black"
+        android:layout_marginVertical="10dp"
+        android:textSize="24sp" />
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/poppins"
+        android:text="@string/we_need_to_verify_your_email_before_we_proceed_to_the_next_step"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginVertical="20dp"
+        android:src="@drawable/verification"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/verify"
+        android:id="@+id/buttonVerify"
+        android:layout_margin="20dp"
+        android:padding="10dp"/>
+</LinearLayout>

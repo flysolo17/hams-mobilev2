@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:fillViewport="true"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".views.main.nav.enrollment.EnrollmentConfirmationFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/class_placeholder"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/classes_title"
+                android:textColor="@color/white"
+                style="@style/MaterialAlertDialog.Material3.Title.Text"
+                android:id="@+id/textClassTitle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="@string/semester_1"
+                android:textColor="@color/white"
+                android:id="@+id/textSemester"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_2023_2024"
+                android:textColor="@color/white"
+                android:id="@+id/textSchoolYear"/>
+        </LinearLayout>
+     </FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="0dp"
+            android:layout_marginVertical="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/black"
+                    android:text="@string/preffered_distance_learning_modalities"/>
+
+                <CheckBox
+                    android:id="@+id/checkModularPrint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/modular_print" />
+
+                <CheckBox
+                    android:id="@+id/checkModularDigital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/modular_digital" />
+
+                <CheckBox
+                    android:id="@+id/checkOnline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/online" />
+
+                <CheckBox
+                    android:id="@+id/checkEducationTelevision"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/education_television" />
+
+                <CheckBox
+                    android:id="@+id/checkRadioBaseInstruction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radio_base_instruction" />
+
+                <CheckBox
+                    android:id="@+id/checkHomeSchooling"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_schooling" />
+
+                <CheckBox
+                    android:id="@+id/checkBlended"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/blended" />
+
+                <CheckBox
+                    android:id="@+id/checkFaceToFace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/face_to_face" />
+
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:padding="15dp"
+            android:id="@+id/buttonSubmit"
+            android:layout_marginVertical="10dp"/>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

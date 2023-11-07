@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Hamsv2" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="fontFamily">@font/poppins</item>
+        <item name="navigationIconTint">@color/white</item>
+    </style>
+
+    <style name="Theme.Hamsv2" parent="Base.Theme.Hamsv2" />
+
+    <style name="CornerCut" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="NavDrawerStyle">
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
+    <style name="subjectCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+</resources>
