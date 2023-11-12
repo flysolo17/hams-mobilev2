@@ -7,62 +7,58 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bryll.hamsv2.R
-import com.bryll.hamsv2.databinding.FragmentAddressBinding
+import com.bryll.hamsv2.databinding.FragmentContactsBinding
 import com.bryll.hamsv2.models.Student
 import com.bryll.hamsv2.utils.LoadingDialog
 import com.bryll.hamsv2.utils.UiState
-import com.bryll.hamsv2.viewmodels.RegistrationViewModel
 import com.bryll.hamsv2.viewmodels.StudentViewModel
+import com.bryll.hamsv2.views.auth.registration.contacts.ContactsAdapter
 
 
-class AddressFragment : Fragment() {
+class ContactsFragment : Fragment() {
+    private lateinit var binding : FragmentContactsBinding
 
-
-    private lateinit var binding : FragmentAddressBinding
-    private lateinit var loadingDialog: LoadingDialog
     private val studentViewModel : StudentViewModel by activityViewModels()
-    private var student: Student ? = null
+    private lateinit var loadingDialog: LoadingDialog
+    private var student : Student ? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAddressBinding.inflate(inflater,container,false)
+       binding = FragmentContactsBinding.inflate(inflater,container,false)
         loadingDialog = LoadingDialog(binding.root.context)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.addAddress.setOnClickListener {
+        binding.fabCreateContact.setOnClickListener {
             if (student != null) {
-                val directions = AddressFragmentDirections.actionAddressFragmentToAddAddressFragment(
-                    student!!.id!!
-                )
+                val directions = ContactsFragmentDirections.actionContactsFragmentToAddContacts(student?.id!!)
                 findNavController().navigate(directions)
-
             } else {
-                Toast.makeText(view.context,"No user found",Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context,"No user found!",Toast.LENGTH_SHORT).show()
             }
+
         }
         studentViewModel.student.observe(viewLifecycleOwner) {
             when(it) {
                 is UiState.ERROR -> loadingDialog.closeDialog()
-               is  UiState.LOADING -> loadingDialog.showDialog("Getting user info")
+                is  UiState.LOADING -> loadingDialog.showDialog("Getting user info")
                 is UiState.SUCCESS -> {
                     loadingDialog.closeDialog()
                     student = it.data
-                    binding.recyclerviewAddresses.apply {
+                    binding.recyclerviewContacts.apply {
                         layoutManager = LinearLayoutManager(view.context)
-                        adapter = AddressAdapter(view.context, it.data.addresses?: emptyList())
+                        adapter = ContactsAdapter(view.context, it.data.contacts?: emptyList())
                     }
                 }
             }
         }
     }
-
 
 }

@@ -21,19 +21,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="@font/poppins_medium"
             android:ems="3"
+            android:fontFamily="@font/poppins_medium"
             android:maxLines="1"
             android:text="@string/add_address"
             android:textAppearance="?attr/textAppearanceBodyMedium"
-            android:textColor="#D8D8D8" />
+            android:textColor="?attr/colorSecondary" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/permanent"
+            android:padding="5dp"
+            android:background="@drawable/text_border"
             android:id="@+id/textAddressType"
             android:textAppearance="?attr/textAppearanceBodySmall"
-            android:textColor="?android:attr/textColorSecondary"
+            android:textColor="#EF5350"
             />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

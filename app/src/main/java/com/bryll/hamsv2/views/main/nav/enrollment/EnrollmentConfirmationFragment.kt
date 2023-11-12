@@ -6,17 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bryll.hamsv2.R
 import com.bryll.hamsv2.databinding.FragmentEnrollmentConfirmationBinding
+import com.bryll.hamsv2.models.Addresses
 import com.bryll.hamsv2.models.Classes
+import com.bryll.hamsv2.models.Contacts
 import com.bryll.hamsv2.models.EnrolledSubjects
 import com.bryll.hamsv2.models.Enrollment
 import com.bryll.hamsv2.models.EnrollmentStatus
 import com.bryll.hamsv2.models.Grades
 import com.bryll.hamsv2.models.Student
+import com.bryll.hamsv2.models.StudentInfo
 import com.bryll.hamsv2.models.Subjects
 import com.bryll.hamsv2.utils.LoadingDialog
 import com.bryll.hamsv2.utils.UiState
@@ -91,7 +95,34 @@ class EnrollmentConfirmationFragment : Fragment() {
             submitApplication(enrollment)
         }
         observer()
+        binding.buttonEditAddress.setOnClickListener {
+            findNavController().navigate(R.id.action_enrollmentConfirmationFragment_to_addressFragment)
+        }
+        binding.buttonEditContacts.setOnClickListener {
+            findNavController().navigate(R.id.action_enrollmentConfirmationFragment_to_contactsFragment)
+        }
     }
+
+    private fun generateAddresses(addresses: Addresses) {
+        val view = LayoutInflater.from(binding.root.context).inflate(R.layout.list_student_addresses,null)
+        val textAddress: TextView = view.findViewById(R.id.textAddress)
+        val textAddressType: TextView = view.findViewById(R.id.textAddressType)
+        textAddress.text = addresses.name
+        textAddressType.text = addresses.type?.name
+        binding.layoutAddress.addView(view)
+    }
+
+    private fun generateContacts(contacts: Contacts) {
+        val view = LayoutInflater.from(binding.root.context).inflate(R.layout.list_contacts,null)
+        val textContactName : TextView = view.findViewById(R.id.textPersonName)
+        val  textContactNumber : TextView  = view.findViewById(R.id.textContactNumber)
+        val textContactType : TextView = view.findViewById(R.id.textContactType)
+        textContactName.text = contacts.name
+        textContactNumber.text = contacts.phoneNumber
+        textContactType.text = contacts.type?.name
+        binding.layoutContacts.addView(view)
+    }
+
 
     private fun submitApplication(enrollment : Enrollment) {
         enrollmentViewModel.submitEnrollmentApplication(enrollment) {
@@ -124,6 +155,17 @@ class EnrollmentConfirmationFragment : Fragment() {
     }
 
 
+    private fun generateStudentInfo(info : StudentInfo) {
+        binding.firstname.text = info.firstName
+        binding.middlename.text = info.middleName
+        binding.lastname.text = info.lastName
+        binding.extensionName.text = info.extensionName
+        binding.gender.text = info.gender?.name ?: "none"
+        binding.dateOfBirth.text = info.getBirthDay()
+        binding.age.text = info.getAge().toString()
+        binding.nationality.text = info.nationality
+    }
+
     private fun getSemester(num : Int) : String {
         return if (num == 1) {
             "1st Semester"
@@ -133,17 +175,25 @@ class EnrollmentConfirmationFragment : Fragment() {
     }
     private fun observer() {
         studentViewModel.student.observe( viewLifecycleOwner) {
-            student = when(it) {
+            when(it) {
                 is UiState.ERROR -> {
-                    null
+                    print(it.message)
                 }
 
                 is UiState.LOADING -> {
-                    null
+                    print("loading")
                 }
                 is UiState.SUCCESS -> {
-                    it.data
-
+                  student =   it.data
+                    binding.layoutAddress.removeAllViews()
+                    binding.layoutContacts.removeAllViews()
+                  generateStudentInfo(it.data.info!!)
+                    it.data.addresses?.map { add ->
+                        generateAddresses(add)
+                    }
+                    it.data.contacts?.map { add ->
+                        generateContacts(add)
+                    }
                 }
             }
         }

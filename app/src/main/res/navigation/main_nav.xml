@@ -24,6 +24,12 @@
         <action
             android:id="@+id/action_menu_profile_to_addressFragment"
             app:destination="@id/addressFragment" />
+        <action
+            android:id="@+id/action_menu_profile_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_menu_profile_to_editStudentInfoFragment"
+            app:destination="@id/editStudentInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/menu_enrollment"
@@ -67,6 +73,12 @@
         <argument
             android:name="classes"
             app:argType="com.bryll.hamsv2.models.Classes" />
+        <action
+            android:id="@+id/action_enrollmentConfirmationFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+        <action
+            android:id="@+id/action_enrollmentConfirmationFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
 
     </fragment>
     <dialog
@@ -78,6 +90,41 @@
         android:id="@+id/addressFragment"
         android:name="com.bryll.hamsv2.views.main.nav.profile.AddressFragment"
         android:label="My Addresses"
-        tools:layout="@layout/fragment_address" />
+        tools:layout="@layout/fragment_address" >
+
+        <action
+            android:id="@+id/action_addressFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/addAddressFragment"
+        android:name="com.bryll.hamsv2.views.main.nav.profile.AddAddressFragment"
+        android:label="fragment_add_address"
+        tools:layout="@layout/fragment_add_address" >
+        <argument
+            android:name="studentID"
+            app:argType="string" />
+    </dialog>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.bryll.hamsv2.views.main.nav.profile.ContactsFragment"
+        android:label="My Contacts"
+        tools:layout="@layout/fragment_contacts" >
+        <action
+            android:id="@+id/action_contactsFragment_to_addContacts"
+            app:destination="@id/addContacts" />
+    </fragment>
+    <dialog
+        android:id="@+id/addContacts"
+        android:name="com.bryll.hamsv2.views.main.nav.profile.AddContacts"
+        android:label="Add Contacts"
+        tools:layout="@layout/fragment_add_contacts" >
+        <argument android:name="studentID" />
+    </dialog>
+    <fragment
+        android:id="@+id/editStudentInfoFragment"
+        android:name="com.bryll.hamsv2.views.main.nav.profile.EditStudentInfoFragment"
+        android:label="Edit Student Information"
+        tools:layout="@layout/fragment_edit_student_info" />
 
 </navigation>

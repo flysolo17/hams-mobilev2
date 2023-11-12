@@ -1,5 +1,6 @@
 package com.bryll.hamsv2.repository.auth
 
+import com.bryll.hamsv2.models.Addresses
 import com.bryll.hamsv2.models.Student
 import com.bryll.hamsv2.utils.UiState
 import com.google.firebase.auth.FirebaseUser
@@ -13,4 +14,5 @@ interface IAuthRepository {
 
     fun reAuthenticateAccount(user: FirebaseUser, email: String, password: String, result: (UiState<FirebaseUser>) -> Unit)
     fun changePassword(user: FirebaseUser, password: String, result: (UiState<String>) -> Unit)
+
 }

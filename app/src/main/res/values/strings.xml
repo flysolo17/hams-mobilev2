@@ -61,4 +61,8 @@
     <string name="_3rd">3rd</string>
     <string name="_4rth">4rth</string>
     <string name="permanent">PERMANENT</string>
+    <string name="add_contacts">Add Contacts</string>
+    <string name="none">none</string>
+    <string name="gender">Gender</string>
+    <string name="edit">Edit</string>
 </resources>

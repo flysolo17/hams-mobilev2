@@ -22,7 +22,7 @@ class StudentViewModel @Inject constructor(private val studentRepository: IStude
     val student: LiveData<UiState<Student>> = _student
 
     fun getStudent(uid: String) {
-        studentRepository.getStudentByID(uid) {
+        studentRepository.listenToStudentByID(uid) {
             _student.value = it
         }
     }
@@ -49,5 +49,12 @@ class StudentViewModel @Inject constructor(private val studentRepository: IStude
         return studentRepository.changeStudentProfile(uid, uri, imageType, result)
     }
 
+    fun createAddress(uid : String ,addresses: Addresses,result: (UiState<String>) -> Unit) {
 
+        return studentRepository.createAddress(uid, addresses, result)
+    }
+
+    fun createContacts(uid : String ,contacts: Contacts,result: (UiState<String>) -> Unit) {
+        return studentRepository.createContacts(uid, contacts, result)
+    }
 }

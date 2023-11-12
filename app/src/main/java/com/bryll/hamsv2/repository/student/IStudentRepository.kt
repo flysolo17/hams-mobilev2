@@ -13,4 +13,7 @@ interface IStudentRepository {
     fun getStudentByID(uid: String,result: (UiState<Student>) -> Unit)
     fun listenToStudentByID(uid: String,result: (UiState<Student>) -> Unit)
     fun changeStudentProfile(uid: String,uri : Uri,imageType : String,result: (UiState<String>) -> Unit)
+    fun createAddress(uid : String,addresses: Addresses,result: (UiState<String>) -> Unit)
+    fun createContacts(uid : String,contacts: Contacts,result: (UiState<String>) -> Unit)
+    fun updateInfo(uid: String,info: StudentInfo,result: (UiState<String>) -> Unit)
 }

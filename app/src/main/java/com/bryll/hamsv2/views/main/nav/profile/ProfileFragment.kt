@@ -51,6 +51,9 @@ class ProfileFragment : Fragment() {
                 pickImageFromGallery()
             }
         }
+        binding.cardContacts.setOnClickListener {
+            findNavController().navigate(R.id.action_menu_profile_to_contactsFragment)
+        }
         binding.cardChangePassword.setOnClickListener {
             findNavController().navigate(R.id.action_menu_profile_to_changePasswordFragment)
         }
@@ -60,6 +63,9 @@ class ProfileFragment : Fragment() {
         observers()
         binding.cardAddresses.setOnClickListener {
             findNavController().navigate(R.id.action_menu_profile_to_addressFragment)
+        }
+        binding.cardEditProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_menu_profile_to_editStudentInfoFragment)
         }
     }
     override fun onAttach(context: Context) {

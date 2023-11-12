@@ -4,7 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="fontFamily">@font/poppins</item>
-        <item name="navigationIconTint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
     <style name="Theme.Hamsv2" parent="Base.Theme.Hamsv2" />
@@ -22,4 +22,10 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerRadius">10dp</item>
     </style>
+
+    <style name="ActionBarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+        <!-- Set the icon color using android:tint -->
+        <item name="android:tint">@color/white</item>
+    </style>
 </resources>
+

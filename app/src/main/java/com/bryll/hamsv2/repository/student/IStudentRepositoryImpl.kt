@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -115,6 +116,57 @@ class IStudentRepositoryImpl(private val auth : FirebaseAuth,private val firesto
                 result(UiState.ERROR("Failed to upload image."))
             }
         }
+    }
+    override fun createAddress(uid: String, addresses: Addresses,result: (UiState<String>) -> Unit) {
+        result.invoke(UiState.LOADING)
+        firestore.collection(COLLECTION_STUDENTS)
+            .document(uid)
+            .update("addresses",FieldValue.arrayUnion(addresses))
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    result.invoke(UiState.SUCCESS("Successfully Added"))
+                } else {
+                    result.invoke(UiState.ERROR(it.exception?.message.toString()))
+                }
+            }.addOnFailureListener {
+                result.invoke(UiState.ERROR(it.message.toString()))
+            }
+    }
+
+    override fun createContacts(
+        uid: String,
+        contacts: Contacts,
+        result: (UiState<String>) -> Unit
+    ) {
+        result.invoke(UiState.LOADING)
+        firestore.collection(COLLECTION_STUDENTS)
+            .document(uid)
+            .update("contacts",FieldValue.arrayUnion(contacts))
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    result.invoke(UiState.SUCCESS("Successfully Added"))
+                } else {
+                    result.invoke(UiState.ERROR(it.exception?.message.toString()))
+                }
+            }.addOnFailureListener {
+                result.invoke(UiState.ERROR(it.message.toString()))
+            }
+    }
+
+    override fun updateInfo(uid: String, info: StudentInfo, result: (UiState<String>) -> Unit) {
+        result.invoke(UiState.LOADING)
+        firestore.collection(COLLECTION_STUDENTS)
+            .document(uid)
+            .update("info",info)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    result.invoke(UiState.SUCCESS("Successfully updated!"))
+                } else {
+                    result.invoke(UiState.ERROR(it.exception?.message.toString()))
+                }
+            }.addOnFailureListener {
+                result.invoke(UiState.ERROR(it.message.toString()))
+            }
     }
 
 }

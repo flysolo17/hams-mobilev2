@@ -3,6 +3,9 @@ package com.bryll.hamsv2
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val toolbar = binding.appBarMain.toolbar
+
 
         studentViewModel.getStudent(FirebaseAuth.getInstance().currentUser?.uid ?: "")
         setSupportActionBar(toolbar)
