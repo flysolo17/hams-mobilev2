@@ -13,7 +13,7 @@ data class Classes(
     val image: String ? = null,
     val name: String ? = null,
     val schoolYear: String ? = null,
-    val educationLevel: String ? = null,
+    val educationLevel: EducationLevel ? = null,
     val curriculum: List<Curriculum>  = emptyList(),
     val semester: Int ? = null,
     val available: Boolean ? = null,

@@ -37,6 +37,14 @@ data class StudentInfo(
         return sdf.format(date)
     }
 
+
+    fun getBirthDayNumberFormat(): String {
+        if (dob == null) {
+            return ""
+        }
+        val sdf = SimpleDateFormat("MM/DD/yyyy")
+        return sdf.format(dob.toDate())
+    }
     fun getAge(): Int {
         if (dob == null) {
             return 0

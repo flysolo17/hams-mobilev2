@@ -9,7 +9,11 @@
         android:id="@+id/menu_dashboard"
         android:name="com.bryll.hamsv2.views.main.nav.home.HomeFragment"
         android:label="Dashboard"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_menu_dashboard_to_viewSubjectFragment"
+            app:destination="@id/viewSubjectFragment" />
+    </fragment>
     <fragment
         android:id="@+id/menu_profile"
         android:name="com.bryll.hamsv2.views.main.nav.profile.ProfileFragment"
@@ -48,7 +52,7 @@
     <fragment
         android:id="@+id/menu_record"
         android:name="com.bryll.hamsv2.views.main.nav.StudentRecordFragment"
-        android:label="fragment_student_record"
+        android:label="Student Record"
         tools:layout="@layout/fragment_student_record" />
     <dialog
         android:id="@+id/menu_logout"
@@ -126,5 +130,25 @@
         android:name="com.bryll.hamsv2.views.main.nav.profile.EditStudentInfoFragment"
         android:label="Edit Student Information"
         tools:layout="@layout/fragment_edit_student_info" />
+    <fragment
+        android:id="@+id/viewSubjectFragment"
+        android:name="com.bryll.hamsv2.views.main.nav.home.ViewSubjectFragment"
+        android:label="View Subject"
+        tools:layout="@layout/fragment_view_subject" >
+        <argument
+            android:name="subject"
+            app:argType="com.bryll.hamsv2.models.Subjects" />
+        <argument
+            android:name="users"
+            app:argType="com.bryll.hamsv2.models.Users" />
+        <argument
+            android:name="image"
+            app:argType="integer" />
+        <argument
+            android:name="grades"
+            app:argType="com.bryll.hamsv2.models.Grades" />
+
+
+    </fragment>
 
 </navigation>

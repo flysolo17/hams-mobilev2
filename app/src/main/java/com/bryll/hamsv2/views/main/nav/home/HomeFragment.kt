@@ -8,19 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bryll.hamsv2.R
 import com.bryll.hamsv2.databinding.FragmentHomeBinding
 import com.bryll.hamsv2.models.Enrollment
+import com.bryll.hamsv2.models.Grades
+import com.bryll.hamsv2.models.Subjects
+import com.bryll.hamsv2.models.Users
 import com.bryll.hamsv2.utils.LoadingDialog
 import com.bryll.hamsv2.utils.UiState
+import com.bryll.hamsv2.utils.getEnrolledSubjects
 import com.bryll.hamsv2.utils.getMostRecentlyEnrolledEnrollment
 import com.bryll.hamsv2.viewmodels.ClassesViewModel
 import com.bryll.hamsv2.viewmodels.EnrollmentViewModel
 import com.bryll.hamsv2.viewmodels.StudentViewModel
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment() ,SubjectAdapterClickListener{
     private val studentViewModel : StudentViewModel by activityViewModels()
     private lateinit var binding : FragmentHomeBinding
     private val classesViewModel : ClassesViewModel by activityViewModels()
@@ -49,34 +54,22 @@ class HomeFragment : Fragment() {
                }
                is UiState.SUCCESS -> {
                    loadingDialog.closeDialog()
-                   val enrollment : Enrollment ? = getMostRecentlyEnrolledEnrollment(it.data)
+                   val enrollment : Enrollment ? = getEnrolledSubjects(it.data)
                    if (enrollment != null)
                    binding.recyclerviewSubjects.apply {
                        layoutManager = LinearLayoutManager(view.context)
-                       adapter = SubjectAdapter(view.context,enrollment.subjects)
+                       adapter = SubjectAdapter(view.context,enrollment.subjects,this@HomeFragment)
                    }
                }
            }
        }
-//        classesViewModel.currentClass.observe(viewLifecycleOwner) { state ->
-//            when (state) {
-//                is UiState.ERROR -> {
-//                    classes = null
-//                    textCurrentEnrollment.text = "ERROR"
-//                }
-//                is UiState.LOADING -> {
-//
-//                    classes = null
-//                    textCurrentEnrollment.text = "LOADING"
-//                }
-//                is UiState.SUCCESS -> {
-//                    classes = state.data
-//                    textCurrentEnrollment.text = "${classes?.name}"
-//                }
-//            }
-//        }
+
     }
 
+    override fun onSubjectClicked(subject: Subjects, users: Users,image : Int,grades : Grades) {
+        val directions = HomeFragmentDirections.actionMenuDashboardToViewSubjectFragment(subject,users,image,grades)
+        findNavController().navigate(directions)
+    }
 
 
 }

@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity() {
                     val enrollment : Enrollment ? = getMostRecentlyEnrolledEnrollment(state.data)
                     if (enrollment != null) {
 
-                        classesViewModel.getClassByID(enrollment.classID!!)
+                        classesViewModel.getClassByID(enrollment.classID ?:"")
                     } else {
                         textCurrentEnrollment.text = "(NOT ENROLLED)"
                     }

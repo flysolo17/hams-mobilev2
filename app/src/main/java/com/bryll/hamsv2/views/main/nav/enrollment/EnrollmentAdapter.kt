@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bryll.hamsv2.R
 import com.bryll.hamsv2.models.Classes
+import com.bryll.hamsv2.models.EducationLevel
 import com.bryll.hamsv2.models.Enrollment
 import com.bryll.hamsv2.models.EnrollmentStatus
 import com.bryll.hamsv2.repository.classes.CLASSES_TABLE
@@ -31,7 +32,7 @@ class EnrollmentAdapter(private val context: Context,private val enrollmentList:
         val enrollment : Enrollment = enrollmentList[position]
         val firestore = FirebaseFirestore.getInstance()
         holder.getClassInfo(firestore, enrollment.classID ?: "",enrollment)
-        holder.textSem.text = enrollment.calculateSemester()
+
         holder.textEnrollmentDate.text = enrollment.formatDate()
         holder.enrollmentStatus.text = enrollment.formatEnrollmentStatus()
 
@@ -51,6 +52,10 @@ class EnrollmentAdapter(private val context: Context,private val enrollmentList:
                     if (it.exists()) {
                         val data : Classes ? = it.toObject(Classes::class.java)
                         if (data != null){
+                            if (data.educationLevel == EducationLevel.PRIMARY) {
+                                textSem.visibility = View.GONE
+                                textSem.text = enrollment.calculateSemester()
+                            }
                             textClassTitle.text = data.name
                             textSchoolYear.text = data.schoolYear
                             if (enrollment.semester == 1 && data.semester == 2 && enrollment.status == EnrollmentStatus.ENROLLED) {

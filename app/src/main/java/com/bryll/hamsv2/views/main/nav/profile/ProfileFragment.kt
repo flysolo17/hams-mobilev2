@@ -70,7 +70,6 @@ class ProfileFragment : Fragment() {
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
         pickImageLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
@@ -129,6 +128,7 @@ class ProfileFragment : Fragment() {
                 is UiState.SUCCESS -> {
                     loadingDialog.closeDialog()
                     student = state.data
+                    binding.textStudentEmail.text = state.data.email
                     binding.textFullname.text =state.data.info?.getFullName()
                     binding.textStudentID.text = "ID -  ${state.data.lrn}"
                     if (!student?.profile.isNullOrEmpty()) {

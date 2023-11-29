@@ -65,4 +65,6 @@
     <string name="none">none</string>
     <string name="gender">Gender</string>
     <string name="edit">Edit</string>
+    <string name="schedule">Schedule</string>
+    <string name="_1st_grading">1st Grading</string>
 </resources>

@@ -27,10 +27,15 @@ fun stringToTimestamp(dateString: String): Timestamp {
 }
 
 fun getMostRecentlyEnrolledEnrollment(enrollments: List<Enrollment>): Enrollment? {
-    return enrollments.filter { it.status == EnrollmentStatus.ENROLLED  }
+    return enrollments.filter { it.status == EnrollmentStatus.ENROLLED   || it.status == EnrollmentStatus.PROCESSING}
         .maxByOrNull { it.enrollmentDate!!.toDate() }
 }
 
+
+fun getEnrolledSubjects(enrollments: List<Enrollment>): Enrollment? {
+    return enrollments.filter { it.status == EnrollmentStatus.ENROLLED }
+        .maxByOrNull { it.enrollmentDate!!.toDate() }
+}
  fun getAMPM(time: String?): String {
     if (time != null) {
         try {
@@ -40,7 +45,7 @@ fun getMostRecentlyEnrolledEnrollment(enrollments: List<Enrollment>): Enrollment
                 val calendar = java.util.Calendar.getInstance()
                 calendar.time = date
                 val amPm = if (calendar.get(java.util.Calendar.AM_PM) == java.util.Calendar.AM) "AM" else "PM"
-                return SimpleDateFormat("hh:mm a", Locale.getDefault()).format(date)
+                return amPm
             }
         } catch (e: Exception) {
             e.printStackTrace()
