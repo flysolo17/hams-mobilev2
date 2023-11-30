@@ -52,7 +52,7 @@ class EnrollmentAdapter(private val context: Context,private val enrollmentList:
                     if (it.exists()) {
                         val data : Classes ? = it.toObject(Classes::class.java)
                         if (data != null){
-                            if (data.educationLevel == EducationLevel.PRIMARY) {
+                            if (data.educationLevel == "PRIMARY") {
                                 textSem.visibility = View.GONE
                                 textSem.text = enrollment.calculateSemester()
                             }
