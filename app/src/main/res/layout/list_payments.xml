@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/white"
+    android:layout_margin="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:id="@+id/name"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Payment : Miscellaneous fee"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/amount"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Amount : ₱ 500"/>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_gravity="end">
+            <Button
+                android:layout_width="wrap_content"
+                android:id="@+id/buttonPaynow"
+                android:layout_height="wrap_content"
+                android:text="Pay now"/>
+
+            <Button
+                android:id="@+id/buttonViewPayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:backgroundTint="#66BB6A"
+                android:text="View Payment" />
+        </FrameLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

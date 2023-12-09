@@ -8,10 +8,14 @@ import com.bryll.hamsv2.repository.classes.IClassesRepository
 import com.bryll.hamsv2.repository.classes.IClassesRepositoryImpl
 import com.bryll.hamsv2.repository.enrollment.IEnrollmentRepository
 import com.bryll.hamsv2.repository.enrollment.IEnrollmentRepositoryImpl
+import com.bryll.hamsv2.repository.payments.IPaymentsRepository
+import com.bryll.hamsv2.repository.payments.IPaymentsRepositoryImpl
 import com.bryll.hamsv2.repository.student.IStudentRepository
 import com.bryll.hamsv2.repository.student.IStudentRepositoryImpl
 import com.bryll.hamsv2.repository.subject.ISubjectRepository
 import com.bryll.hamsv2.repository.subject.ISubjectRepositoryImpl
+import com.bryll.hamsv2.repository.transactions.ITransactionsRepository
+import com.bryll.hamsv2.repository.transactions.ITransactionsRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -78,6 +82,23 @@ object RepositoryProviders {
         firestore: FirebaseFirestore,
     ): IUsersRepository{
         return IUsersRepositoryImpl(firestore)
+    }
+
+    @Provides
+    @Singleton
+    fun providePaymentRepository(
+        firestore: FirebaseFirestore,
+    ): IPaymentsRepository{
+        return IPaymentsRepositoryImpl(firestore)
+    }
+
+    @Provides
+    @Singleton
+    fun providesTransactionsRepository(
+        firestore: FirebaseFirestore,
+        storage: FirebaseStorage
+    ): ITransactionsRepository{
+        return ITransactionsRepositoryImpl(firestore,storage)
     }
 
 }

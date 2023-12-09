@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.menu_dashboard, R.id.menu_record,R.id.menu_enrollment,R.id.menu_grade,R.id.menu_profile , R.id.menu_logout
+                R.id.menu_dashboard, R.id.menu_record,R.id.menu_enrollment,R.id.menu_grade,R.id.menu_payment,R.id.menu_profile , R.id.menu_logout
             ), binding.drawerLayout
         )
 

@@ -24,9 +24,7 @@ import java.util.Date
     }
     fun formatDate(): String {
         val date = enrollmentDate?.toDate()
-
         val dateFormat = SimpleDateFormat("MMM dd, yyyy")
-
         return dateFormat.format(date)
     }
      fun formatEnrollmentStatus(): String {
@@ -35,7 +33,7 @@ import java.util.Date
              EnrollmentStatus.ENROLLED -> "Enrolled"
              EnrollmentStatus.CANCELLED -> "Cancelled"
              EnrollmentStatus.DECLINE -> "Decline"
-             EnrollmentStatus.FINISHED -> "Finished"
+             EnrollmentStatus.COMPLETED -> "Completed"
              else -> "Processing"
          }
      }

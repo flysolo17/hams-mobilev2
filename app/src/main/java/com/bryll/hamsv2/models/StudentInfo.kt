@@ -42,8 +42,9 @@ data class StudentInfo(
         if (dob == null) {
             return ""
         }
-        val sdf = SimpleDateFormat("MM/DD/yyyy")
-        return sdf.format(dob.toDate())
+        val date: Date = dob.toDate()
+        val sdf = SimpleDateFormat("MM/dd/yyyy")
+        return sdf.format(date)
     }
     fun getAge(): Int {
         if (dob == null) {

@@ -101,6 +101,9 @@ class EnrollmentConfirmationFragment : Fragment() {
         binding.buttonEditContacts.setOnClickListener {
             findNavController().navigate(R.id.action_enrollmentConfirmationFragment_to_contactsFragment)
         }
+        binding.buttonEditInfo.setOnClickListener {
+            findNavController().navigate(R.id.action_enrollmentConfirmationFragment_to_editStudentInfoFragment)
+        }
     }
 
     private fun generateAddresses(addresses: Addresses) {

@@ -10,7 +10,9 @@ import com.bryll.hamsv2.models.Enrollment
 import com.bryll.hamsv2.models.EnrollmentStatus
 import com.bryll.hamsv2.models.Schedule
 import com.google.firebase.Timestamp
+import java.sql.Struct
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 
@@ -83,4 +85,19 @@ fun getImageResource(index: Int): Int {
         7 -> R.drawable.class09
         else -> R.drawable.class01
     }
+}
+
+
+ fun formatBirthDate(date: Date): String {
+    val sdf = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+    return sdf.format(date)
+}
+
+fun formatPayment(number: Number) : String{
+    return "₱ $number";
+}
+
+fun formatPaymentDate(date: Date): String {
+    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm aa", Locale.getDefault())
+    return sdf.format(date)
 }

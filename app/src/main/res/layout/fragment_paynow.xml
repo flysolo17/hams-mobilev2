@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".views.main.nav.payments.PaynowFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageGcashUrl"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Payment name"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:id="@+id/textname"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:id="@+id/textAmount"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/black"
+            android:text="@string/to_continue_with_gcash_payment_open_your_gcash_app_scan_this_qr_code_and_upload_your_receipt"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonUploadReceipt"
+            android:text="@string/upload_your_receipt"/>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/receipt"
+            android:id="@+id/imageReceipt"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Pay now"
+            android:enabled="false"
+            android:id="@+id/buttonPaynow"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

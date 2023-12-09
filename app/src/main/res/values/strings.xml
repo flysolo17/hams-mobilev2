@@ -67,4 +67,7 @@
     <string name="edit">Edit</string>
     <string name="schedule">Schedule</string>
     <string name="_1st_grading">1st Grading</string>
+    <string name="to_continue_with_gcash_payment">To continue with GCASH payment</string>
+    <string name="to_continue_with_gcash_payment_open_your_gcash_app_scan_this_qr_code_and_upload_your_receipt">To continue with gcash payment,Open your GCASH APP, Scan this QR code and Upload Your Receipt.</string>
+    <string name="upload_your_receipt">Upload Your Receipt</string>
 </resources>

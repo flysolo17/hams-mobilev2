@@ -5,5 +5,5 @@ enum class EnrollmentStatus {
     ENROLLED,
     CANCELLED,
     DECLINE,
-    FINISHED
+    COMPLETED
 }

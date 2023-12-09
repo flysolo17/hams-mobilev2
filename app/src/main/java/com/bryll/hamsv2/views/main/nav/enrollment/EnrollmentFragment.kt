@@ -12,17 +12,27 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bryll.hamsv2.R
 import com.bryll.hamsv2.databinding.FragmentEnrollmentBinding
+import com.bryll.hamsv2.models.Classes
+import com.bryll.hamsv2.models.EnrolledSubjects
+import com.bryll.hamsv2.models.Enrollment
+import com.bryll.hamsv2.models.EnrollmentStatus
+import com.bryll.hamsv2.models.Grades
+import com.bryll.hamsv2.models.Student
 import com.bryll.hamsv2.utils.LoadingDialog
 import com.bryll.hamsv2.utils.UiState
 import com.bryll.hamsv2.utils.getMostRecentlyEnrolledEnrollment
 import com.bryll.hamsv2.viewmodels.EnrollmentViewModel
+import com.bryll.hamsv2.viewmodels.StudentViewModel
+import com.google.firebase.Timestamp
 import dagger.hilt.android.AndroidEntryPoint
 
 
-class EnrollmentFragment : Fragment() {
+class EnrollmentFragment : Fragment() ,OnEnrollmentClicked{
     private lateinit var binding: FragmentEnrollmentBinding
     private val enrollmentViewModel : EnrollmentViewModel by activityViewModels()
     private lateinit var loadingDialog: LoadingDialog
+    private var student : Student ? = null
+    private val studentViewModel : StudentViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,7 +62,7 @@ class EnrollmentFragment : Fragment() {
                     loadingDialog.closeDialog()
                     binding.recyclerviewEnrollments.apply {
                         layoutManager = LinearLayoutManager(view.context)
-                        adapter = EnrollmentAdapter(view.context,state.data)
+                        adapter = EnrollmentAdapter(view.context,state.data,this@EnrollmentFragment)
                     }
                     val enrollment = getMostRecentlyEnrolledEnrollment(state.data)
                     if (enrollment == null) {
@@ -63,6 +73,63 @@ class EnrollmentFragment : Fragment() {
                 }
             }
         }
+        observer()
     }
 
+    override fun updateEnrollment(enrollment: Enrollment, classes: Classes) {
+        val subjects = mutableListOf<EnrolledSubjects>()
+        classes.curriculum.forEach {curriculum->
+            if (curriculum.sem == 2) {
+                subjects.add(EnrolledSubjects(curriculum.subjectID, Grades()))
+            }
+        }
+        val enrollment = Enrollment(
+            "",
+            student?.id ?: "",
+            2,
+            classes.id ,
+            subjects,
+            EnrollmentStatus.PROCESSING,
+            enrollment.type,
+            Timestamp.now())
+        submitApplication(enrollment)
+    }
+
+    private fun observer() {
+        studentViewModel.student.observe( viewLifecycleOwner) {
+            when(it) {
+                is UiState.ERROR -> {
+                    print(it.message)
+                }
+
+                is UiState.LOADING -> {
+                    print("loading")
+                }
+                is UiState.SUCCESS -> {
+                    student =   it.data
+
+                }
+            }
+        }
+    }
+
+    private fun submitApplication(enrollment : Enrollment) {
+        enrollmentViewModel.submitEnrollmentApplication(enrollment) {
+            when(it) {
+                is UiState.ERROR ->{
+                    loadingDialog.closeDialog()
+                    Toast.makeText(binding.root.context,it.message,Toast.LENGTH_SHORT).show()
+                }
+
+                is  UiState.LOADING -> {
+                    loadingDialog.showDialog("submitting application...")
+                }
+                is UiState.SUCCESS ->{
+                    loadingDialog.closeDialog()
+                    Toast.makeText(binding.root.context,it.data,Toast.LENGTH_SHORT).show()
+
+                }
+            }
+        }
+    }
 }

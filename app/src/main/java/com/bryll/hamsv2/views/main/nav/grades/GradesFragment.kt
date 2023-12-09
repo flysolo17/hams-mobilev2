@@ -93,8 +93,8 @@ class GradesFragment : Fragment(), OnGradeClick {
 
     private fun generateAndDownloadPDF(context: Context  ,view: View) {
         // Define the PDF file name and path
-        val pdfFileName = "sample.pdf"
-        val directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        val pdfFileName = "grades.pdf"
+        val directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
         val pdfFile = File(directory, pdfFileName)
 
         try {
@@ -104,14 +104,14 @@ class GradesFragment : Fragment(), OnGradeClick {
 
             val bitmap = viewToBitmap(view)
 
-            // Create an iText Image object from the bitmap
+
             val image = ImageDataFactory.create(bitmapToByteArray(bitmap))
             val data = Image(image)
             document.add(data)
 
 
             document.close()
-            Toast.makeText(context,"success",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"PDF saved to ${pdfFile.absolutePath}",Toast.LENGTH_SHORT).show()
         } catch (e: IOException) {
             e.printStackTrace()
         }

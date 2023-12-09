@@ -51,7 +51,6 @@ class ClassesFragment : Fragment() ,ClassesAdapterListener{
                 }
                 is UiState.SUCCESS -> {
                     loadingDialog.closeDialog()
-                    Toast.makeText(binding.root.context,"${it.data.size}",Toast.LENGTH_SHORT).show()
                     binding.recyclerviewClasses.apply {
                         layoutManager = LinearLayoutManager(binding.root.context)
                         adapter = ClassesAdapter(binding.root.context,it.data,this@ClassesFragment)

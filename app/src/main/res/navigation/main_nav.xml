@@ -51,7 +51,7 @@
         tools:layout="@layout/fragment_grades" />
     <fragment
         android:id="@+id/menu_record"
-        android:name="com.bryll.hamsv2.views.main.nav.StudentRecordFragment"
+        android:name="com.bryll.hamsv2.views.main.nav.records.StudentRecordFragment"
         android:label="Student Record"
         tools:layout="@layout/fragment_student_record" />
     <dialog
@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_enrollmentConfirmationFragment_to_contactsFragment"
             app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_enrollmentConfirmationFragment_to_editStudentInfoFragment"
+            app:destination="@id/editStudentInfoFragment" />
 
     </fragment>
     <dialog
@@ -149,6 +152,39 @@
             app:argType="com.bryll.hamsv2.models.Grades" />
 
 
+    </fragment>
+    <fragment
+        android:id="@+id/menu_payment"
+        android:name="com.bryll.hamsv2.views.main.nav.payments.PaymentsFragment"
+        android:label="Payments"
+        tools:layout="@layout/fragment_payments" >
+        <action
+            android:id="@+id/action_menu_payment_to_paynowFragment"
+            app:destination="@id/paynowFragment" />
+        <action
+            android:id="@+id/action_menu_payment_to_viewPayments"
+            app:destination="@id/viewPayments" />
+    </fragment>
+    <fragment
+        android:id="@+id/paynowFragment"
+        android:name="com.bryll.hamsv2.views.main.nav.payments.PaynowFragment"
+        android:label="Pay via GCASH"
+        tools:layout="@layout/fragment_paynow" >
+        <argument
+            android:name="payments"
+            app:argType="com.bryll.hamsv2.models.Payments" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPayments"
+        android:name="com.bryll.hamsv2.views.main.nav.payments.ViewPayments"
+        android:label="View Payment"
+        tools:layout="@layout/fragment_view_payments" >
+        <argument
+            android:name="transactions"
+            app:argType="com.bryll.hamsv2.models.Transactions" />
+        <argument
+            android:name="payments"
+            app:argType="com.bryll.hamsv2.models.Payments" />
     </fragment>
 
 </navigation>

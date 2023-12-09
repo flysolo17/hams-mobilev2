@@ -146,13 +146,27 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:orientation="vertical">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="My Grade"
-                android:fontFamily="@font/poppins_semibold"
-                android:textSize="20sp"
-                android:textColor="@color/black"/>
+
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="My Grade"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Download"
+                    android:id="@+id/buttonDownload"
+                    style="@style/Widget.Material3.Button.TextButton"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

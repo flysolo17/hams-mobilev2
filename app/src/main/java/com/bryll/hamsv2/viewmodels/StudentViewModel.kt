@@ -57,4 +57,7 @@ class StudentViewModel @Inject constructor(private val studentRepository: IStude
     fun createContacts(uid : String ,contacts: Contacts,result: (UiState<String>) -> Unit) {
         return studentRepository.createContacts(uid, contacts, result)
     }
+    fun updateInfo(uid: String,studentInfo: StudentInfo,result: (UiState<String>) -> Unit) {
+        return studentRepository.updateInfo(uid,studentInfo,result)
+    }
 }
